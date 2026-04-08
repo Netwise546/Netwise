@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Netwise - Clean, fast websites for small businesses in Abu Dhabi. Built with HTML & CSS by a local developer.">
+    <title>Netwise | Clean Websites for Small Businesses in Abu Dhabi</title>
+    <style>
+        :root {
+            --primary: #00d4ff;
+            --dark: #0a2540;
+            --accent: #00b8cc;
+        }
+       
+        * { margin:0; padding:0; box-sizing:border-box; }
+       
+        body { font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif; line-height:1.6; color:#333; }
+       
+        nav {
+            background: rgba(10, 37, 64, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+        }
+       
+        .logo { font-size: 2rem; font-weight: 800; color: var(--primary); text-decoration: none; display:flex; align-items:center; gap:8px; }
+        .logo::before { content:''; display:inline-block; width:32px; height:32px; background: linear-gradient(45deg, #00d4ff, #00b8cc); border-radius:8px; box-shadow:0 0 20px rgba(0,212,255,0.5); }
+        .nav-links { display:flex; list-style:none; gap:2.5rem; }
+        .nav-links a { color:white; text-decoration:none; font-weight:500; transition:color 0.3s ease; }
+        .nav-links a:hover { color: var(--primary); }
+        .nav-cta { background:var(--primary); color:#0a2540; padding:12px 28px; border-radius:50px; font-weight:700; text-decoration:none; transition:all 0.3s ease; box-shadow:0 4px 15px rgba(0,212,255,0.4); }
+        .nav-cta:hover { transform: translateY(-3px); box-shadow:0 8px 25px rgba(0,212,255,0.5); }
+        .mobile-menu { display:none; font-size:1.8rem; color:white; cursor:pointer; }
+       
+        .hero { background: linear-gradient(135deg, #0a2540 0%, #112b4e 100%); color:white; padding:140px 5% 100px; position:relative; overflow:hidden; }
+        .hero::before { content:''; position:absolute; top:-50%; right:-20%; width:600px; height:600px; background: radial-gradient(circle, rgba(0,212,255,0.15) 0%, transparent 70%); border-radius:50%; z-index:1; }
+        .hero-content { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center; position:relative; z-index:2; }
+        .hero-text h1 { font-size:3.8rem; line-height:1.1; margin-bottom:1.5rem; }
+        .hero-text .highlight { color: var(--primary); }
+        .hero-text p { font-size:1.4rem; max-width:500px; margin-bottom:2.5rem; opacity:0.95; }
+        .hero-buttons { display:flex; gap:1.5rem; flex-wrap:wrap; }
+        .btn-primary { background:var(--primary); color:#0a2540; padding:18px 36px; border-radius:50px; font-size:1.2rem; font-weight:700; text-decoration:none; display:inline-flex; align-items:center; gap:10px; transition:all 0.3s ease; box-shadow:0 10px 30px rgba(0,212,255,0.4); }
+        .btn-primary:hover { transform:scale(1.05); }
+        .btn-secondary { background:transparent; color:white; border:3px solid white; padding:18px 36px; border-radius:50px; font-size:1.2rem; font-weight:600; text-decoration:none; transition:all 0.3s ease; }
+        .btn-secondary:hover { background:white; color: var(--dark); }
+       
+        .mock-website { background:white; border-radius:20px; padding:20px; box-shadow:30px 30px 0 -10px rgba(0,212,255,0.3), 0 40px 60px rgba(0,0,0,0.3); transform:rotate(-8deg); }
+        .mock-header { height:50px; background:#0a2540; border-radius:12px 12px 0 0; margin-bottom:15px; display:flex; align-items:center; padding:0 20px; }
+        .mock-dots { display:flex; gap:8px; }
+        .mock-dot { width:12px; height:12px; background:#ff5f57; border-radius:50%; }
+        .mock-dot:nth-child(2) { background:#ffbc2e; }
+        .mock-dot:nth-child(3) { background:#28c840; }
+        .mock-content { height:320px; background: linear-gradient(#f0f4ff,#e6f0ff); border-radius:12px; display:flex; align-items:center; justify-content:center; font-size:1.4rem; color:#0a2540; font-weight:700; text-align:center; padding:30px; }
+       
+        section { padding:100px 5%; }
+        .section-header { text-align:center; max-width:700px; margin:0 auto 4rem; }
+        .section-header h2 { font-size:2.8rem; color: var(--dark); margin-bottom:1rem; }
+        .section-header p { font-size:1.3rem; color:#555; }
+       
+        .services-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(340px, 1fr)); gap:2rem; max-width:1200px; margin:0 auto; }
+        .service-card { background:white; border-radius:20px; padding:40px 30px; box-shadow:0 10px 30px rgba(0,0,0,0.08); transition:all 0.4s cubic-bezier(0.4,0,0.2,1); text-align:center; }
+        .service-card:hover { transform:translateY(-15px); box-shadow:0 25px 50px rgba(0,212,255,0.2); }
+        .service-icon { width:80px; height:80px; background:linear-gradient(135deg, var(--primary), var(--accent)); border-radius:20px; margin:0 auto 25px; display:flex; align-items:center; justify-content:center; font-size:2.2rem; color:white; box-shadow:0 10px 30px rgba(0,212,255,0.3); }
+       
+        .steps { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:2rem; max-width:1200px; margin:0 auto; }
+        .step { display:flex; gap:25px; }
+        .step-number { width:60px; height:60px; background: var(--primary); color:#0a2540; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.8rem; font-weight:800; flex-shrink:0; }
+       
+        .portfolio-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(360px,1fr)); gap:2rem; max-width:1200px; margin:0 auto; }
+        .portfolio-card { border-radius:20px; overflow:hidden; box-shadow:0 15px 35px rgba(0,0,0,0.1); transition:transform 0.4s ease; }
+        .portfolio-card:hover { transform:scale(1.03); }
+        .portfolio-image { height:240px; background:linear-gradient(45deg,#0a2540,#1e4a70); display:flex; align-items:center; justify-content:center; color:white; font-size:2.5rem; }
+       
+        .cta-banner { background: linear-gradient(90deg,#0a2540,#112b4e); color:white; text-align:center; padding:90px 5%; border-radius:30px; margin:40px 5%; }
+        footer { background:#0a2540; color:white; padding:60px 5% 40px; text-align:center; }
+       
+        @media(max-width:992px){
+            .hero-content { grid-template-columns:1fr; text-align:center; }
+            .nav-links { display:none; }
+            .mobile-menu { display:block; }
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <a href="#" class="logo">Netwise</a>
+    <ul class="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#how">How It Works</a></li>
+        <li><a href="#portfolio">Examples</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Get Free Quote →</a>
+    <div class="mobile-menu" onclick="toggleMobileMenu()">☰</div>
+</nav>
+
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-text">
+            <h1>Your business deserves a <span class="highlight">proper website</span></h1>
+            <p>I'm a local web developer in Abu Dhabi. I build clean, fast, mobile-friendly websites for small businesses that still don’t have one.</p>
+            <div class="hero-buttons">
+                <a href="#portfolio" class="btn-primary">See Examples</a>
+                <a href="#contact" class="btn-secondary">Get Your Free Quote</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="mock-website">
+                <div class="mock-header">
+                    <div class="mock-dots">
+                        <div class="mock-dot"></div>
+                        <div class="mock-dot"></div>
+                        <div class="mock-dot"></div>
+                    </div>
+                    <div style="margin-left:auto; font-size:0.9rem; color:#aaa;">www.yourbusiness.ae</div>
+                </div>
+                <div class="mock-content">Your New Website Here</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="services">
+    <div class="section-header">
+        <h2>Simple websites that actually help your business</h2>
+        <p>I focus on clean design, fast loading, and easy contact forms so your customers can reach you quickly.</p>
+    </div>
+    <div class="services-grid">
+        <div class="service-card">
+            <div class="service-icon">📱</div>
+            <h3>Mobile-Friendly Websites</h3>
+            <p>Works perfectly on phones, tablets, and computers.</p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">🚀</div>
+            <h3>Fast & Clean Code</h3>
+            <p>Built with HTML & CSS (I code it myself). Loads quickly so customers stay.</p>
+        </div>
+        <div class="service-card">
+            <div class="service-icon">📧</div>
+            <h3>Contact & Booking Forms</h3>
+            <p>Easy ways for people to message you or book directly.</p>
+        </div>
+    </div>
+</section>
+
+<section id="how" style="background:#f8fbff;">
+    <div class="section-header">
+        <h2>Simple 3-step process</h2>
+        <p>From first chat to live website — fast and transparent.</p>
+    </div>
+    <div class="steps">
+        <div class="step"><div class="step-number">1</div><div><h3>Tell me about your business</h3><p>Quick call or message — what you do and what you need.</p></div></div>
+        <div class="step"><div class="step-number">2</div><div><h3>I design & build it</h3><p>I create a custom version and show you for feedback.</p></div></div>
+        <div class="step"><div class="step-number">3</div><div><h3>We launch it</h3><p>Small changes if needed, then your site goes live.</p></div></div>
+    </div>
+</section>
+
+<section id="portfolio">
+    <div class="section-header">
+        <h2>Example websites I can build</h2>
+        <p>Here are simple layouts for different local businesses (I'll replace these with real client sites soon).</p>
+    </div>
+    <div class="portfolio-grid">
+        <div class="portfolio-card"><div class="portfolio-image">☕</div><div class="portfolio-info" style="padding:25px;background:white;"><h4>Coffee Shop / Cafe</h4><p>Menu, location, contact form, opening hours.</p></div></div>
+        <div class="portfolio-card"><div class="portfolio-image">🔧</div><div class="portfolio-info" style="padding:25px;background:white;"><h4>Repair / Service Business</h4><p>Services list, booking form, contact.</p></div></div>
+        <div class="portfolio-card"><div class="portfolio-image">💇‍♀️</div><div class="portfolio-info" style="padding:25px;background:white;"><h4>Salon or Beauty Studio</h4><p>Gallery, services, online booking.</p></div></div>
+    </div>
+</section>
+
+<section id="pricing" style="background:#f8fbff;">
+    <div class="section-header">
+        <h2>Pricing</h2>
+        <p>Simple & transparent. No hidden fees.</p>
+    </div>
+    <div style="max-width:800px; margin:0 auto; text-align:center; font-size:1.2rem;">
+        <p><strong>One-page website</strong>: <strong>AED 500 – 1,000</strong></p>
+        <p><strong>3–5 page website</strong>: <strong>AED 1,000 – 2,500</strong></p>
+        <p style="margin-top:25px;">Includes custom design, mobile-friendly layout, contact form, basic SEO, and one round of revisions.<br>
+        Domain & hosting can be added separately (usually cheap).</p>
+        <a href="#contact" class="btn-primary" style="margin-top:30px; display:inline-block;">Get exact price for your business</a>
+    </div>
+</section>
+
+<div id="contact" class="cta-banner">
+    <h2>Ready to get your business online?</h2>
+    <p style="font-size:1.4rem; max-width:600px; margin:0 auto 2rem;">Tell me a bit about your business and I’ll reply with a custom quote within 24 hours.</p>
+    <form action="https://formsubmit.co/netwise546@gmail.com" method="POST" style="max-width:620px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:15px;">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_subject" value="New NetWise Client Inquiry">
+        <input type="hidden" name="_next" value="thank-you.html">
+
+        <input type="text" name="name" placeholder="Your name" required style="padding:18px; border-radius:12px; border:none; font-size:1.1rem;">
+        <input type="email" name="email" placeholder="Email" required style="padding:18px; border-radius:12px; border:none; font-size:1.1rem;">
+        <input type="tel" name="phone" placeholder="Phone" style="padding:18px; border-radius:12px; border:none; font-size:1.1rem; grid-column:span 2;">
+        <textarea name="message" placeholder="Tell me about your business (cafe, salon, repair shop, etc.)" rows="4" style="padding:18px; border-radius:12px; border:none; font-size:1.1rem; grid-column:span 2; resize:vertical;"></textarea>
+        <button type="submit" style="background:#00d4ff; color:#0a2540; padding:20px; border:none; border-radius:50px; font-size:1.3rem; font-weight:700; cursor:pointer; grid-column:span 2; margin-top:10px;">Send Message – Get Quote</button>
+    </form>
+</div>
+
+<footer>
+    <p>© 2026 Netwise — Built by a local developer in Abu Dhabi</p>
+    <p style="margin-top:10px;">Helping small businesses get online without big agency prices.</p>
+</footer>
+
+<script>
+function toggleMobileMenu() {
+    alert("Mobile menu coming soon! The site already works great on phones.");
+}
+</script>
+</body>
+</html>
